@@ -2,8 +2,8 @@ import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import fetch from "node-fetch";
 
-const clientId = process.env.SPOTIFY_CLIENT_ID;
-const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const clientId = process.env.SPOTIFY_CLIENT_ID as string;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET as string;
 
 const scopes = [
     "user-read-email",
@@ -24,8 +24,8 @@ const LOGIN_URL =
 export const authOptions = {
     providers: [
         SpotifyProvider({
-            clientId: process.env.SPOTIFY_CLIENT_ID,
-            clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+            clientId: process.env.SPOTIFY_CLIENT_ID as string,
+            clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
             authorization: LOGIN_URL,
         }),
     ],
@@ -34,7 +34,7 @@ export const authOptions = {
         signIn: "/login",
     },
     callbacks: {
-        async jwt({ token, account }) {
+        async jwt({ token, account }: any) {
             // initial sign in
             if (account) {
                 token.accessToken = account.access_token;
@@ -50,7 +50,7 @@ export const authOptions = {
                 await refreshAccessToken(token);
             }
         },
-        async session({ session, token, user }) {
+        async session({ session, token, user }: any) {
             // sending access_token to client for requests to Spotify API
             session.accessToken = token.accessToken;
             return session;
@@ -58,7 +58,7 @@ export const authOptions = {
     },
 };
 
-const refreshAccessToken = async (token) => {
+const refreshAccessToken = async (token: any) => {
     const params = new URLSearchParams();
     params.append("grant_type", "refresh_token");
     params.append("refresh_token", token.refreshToken);
@@ -68,14 +68,14 @@ const refreshAccessToken = async (token) => {
         headers: {
             Authorization:
                 "Basic " +
-                new Buffer.from(clientId + ":" + clientSecret).toString(
-                    "base64"
-                ),
+                new (Buffer as any).from(
+                    clientId + ":" + clientSecret
+                ).toString("base64"),
         },
         body: params,
     });
 
-    const data = await res.json();
+    const data: any = await res.json();
     return {
         accessToken: data.access_token,
         refreshToken: data.refresh_token,

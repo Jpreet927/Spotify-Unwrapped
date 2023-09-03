@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
+import { getTopItems } from "../lib/spotify";
+// import { useRouter } from "next/router";
+// import { useSession } from "next-auth/react";
+// import { Session } from "next-auth";
 
 type SpotifySession = Session & {
     accessToken: string;
@@ -17,14 +18,9 @@ export default function Home() {
 
     const getTopItems = async () => {
         if (session && session.accessToken) {
-            const response = await fetch(URL, {
-                headers: {
-                    Authorization: `Bearer ${session.accessToken}`,
-                },
-            });
-
-            const data = await response.json();
-            console.log(data);
+            try {
+                await getTopItems();
+            } catch (error) {}
         }
     };
 

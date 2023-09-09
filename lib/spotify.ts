@@ -22,4 +22,4 @@ export const getTopItems = async (
     return data;
 };
 
-export const getUserProfile = async () => {};
+export const getUserProfile = async (token: string) => {};

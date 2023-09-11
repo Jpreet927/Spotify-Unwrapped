@@ -4,7 +4,7 @@ export const getTopItems = async (
     timeframe: string,
     token: string
 ) => {
-    const URL = `https://api.spotify.com/v1/me/top/${type}`;
+    const URL = `https://api.spotify.com/v1/me/top/${type}?`;
     const res = await fetch(
         URL +
             new URLSearchParams({
@@ -18,7 +18,7 @@ export const getTopItems = async (
     );
     const data = await res.json();
 
-    console.log(data);
+    console.log(res);
     return data;
 };
 

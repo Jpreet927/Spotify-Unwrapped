@@ -7,7 +7,7 @@ const Avatar = () => {
     return (
         <div className="rounded-full w-12 h-12 bg-black overflow-hidden">
             <img
-                src={session.user.image}
+                src={session?.user.image}
                 alt=""
                 className="w-full h-full object-cover opacity-100 hover:opacity-80 transition-opacity cursor-pointer"
             />

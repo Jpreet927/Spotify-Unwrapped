@@ -6,14 +6,14 @@ export type TopArtist = {
     genres: string[];
     href: string;
     id: string;
-    images: ArtistImage[];
+    images: Image[];
     name: string;
     popularity: number;
     type: string;
     uri: string;
 };
 
-export type ArtistImage = {
+export type Image = {
     height: number;
     url: string;
     width: number;

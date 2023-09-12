@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
     return (
-        <>
-            <div className="flex w-full items-center gap-4 text-sm">
+        <div className="bg-white/0 hover:bg-white/5 transition-colors">
+            <div className="flex w-full items-center gap-4 text-sm py-4 px-4">
                 <div className="w-10 h-10 overflow-hidden">
                     <img
                         src={artist.images[0].url}
@@ -19,7 +19,7 @@ const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
                     <div className="w-[33%]">
                         <p>{rank + ". " + artist.name}</p>
                     </div>
-                    <div className="w-[33%]">
+                    <div className="w-[33%] text-text-secondary">
                         {artist.genres
                             .slice(0, 3)
                             .map((genre: string, index: number) => {
@@ -48,15 +48,15 @@ const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
                     <Link
                         href={artist.external_urls.spotify}
                         target="_blank"
-                        className="flex gap-1 w-[33%] justify-end items-center"
+                        className="flex gap-1 w-[33%] justify-end items-center text-text-secondary hover:text-text-primary transition-all"
                     >
                         <ArrowOutwardIcon />
                         Visit Artist
                     </Link>
                 </div>
             </div>
-            <div className="w-full h-[1px] bg-white/20 my-4"></div>
-        </>
+            <div className="w-full h-[1px] bg-white/20"></div>
+        </div>
     );
 };
 

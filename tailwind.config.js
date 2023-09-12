@@ -17,6 +17,11 @@ module.exports = {
         },
         extend: {
             colors: {
+                // MY STYLES
+                "text-primary": "var(--text-primary)",
+                "text-secondary": "var(--text-secondary)",
+
+                // SHADCN STYLES
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",

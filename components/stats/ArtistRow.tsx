@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
     return (
-        <div className="bg-white/0 hover:bg-white/5 transition-colors">
-            <div className="flex w-full items-center gap-4 text-sm py-4 px-4">
+        <div className="bg-white/0 hover:bg-white/5 transition-colors w-full">
+            <div className="flex w-full items-center gap-4 py-4 px-4 sm:text-sm text-xs">
                 <div className="w-10 h-10 overflow-hidden">
                     <img
                         src={artist.images[0].url}
@@ -16,10 +16,10 @@ const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
                     />
                 </div>
                 <div className="flex w-full items-center">
-                    <div className="w-[33%]">
+                    <div className="sm:w-[33%] w-[66%]">
                         <p>{rank + ". " + artist.name}</p>
                     </div>
-                    <div className="w-[33%] text-text-secondary">
+                    <div className="sm:w-[33%] w-0 sm:block hidden text-text-secondary">
                         {artist.genres
                             .slice(0, 3)
                             .map((genre: string, index: number) => {

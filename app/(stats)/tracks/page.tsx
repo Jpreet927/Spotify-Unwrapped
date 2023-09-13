@@ -39,7 +39,7 @@ const TopTracksPage = () => {
                     ?.slice(0, LIST_OFFSET)
                     .map((track) => track.album.images)}
             />
-            <h1 className="text-8xl font-bold ml-[15%] -translate-y-16">
+            <h1 className="lg:text-8xl sm:text-7xl text-6xl font-bold lg:ml-[15%] ml-0 -translate-y-16 lg:text-left text-center">
                 Your Top Tracks
             </h1>
             <TrackList topTracks={topTracks} setTimeframe={setTimeframe} />

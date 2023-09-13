@@ -28,17 +28,19 @@ export default function Home() {
     return (
         <main className="bg-home bg-cover bg-center h-screen w-screen items-center flex flex-col">
             <Header />
-            <div className="flex flex-col items-center justify-center text-center text-white gap-4 w-[50%] h-full">
-                <h1 className="text-8xl font-bold">WELCOME TO UNWRAPPED</h1>
-                <p className="">
+            <div className="flex flex-col items-center justify-center text-center text-white gap-4 md:w-[50%] w-[80%] h-full">
+                <h1 className="md:text-8xl sm:text-6xl text-5xl font-bold">
+                    WELCOME TO UNWRAPPED
+                </h1>
+                <p className="md:text-md text-sm text-text-secondary">
                     Where you can view your Spotify listening habits without
                     having to wait for the end of the year.
                 </p>
-                <div className="flex gap-16 mt-8">
-                    <Link href="/artists">
+                <div className="flex sm:gap-16 gap-4 mt-8">
+                    <Link href="/artists" className="md:text-md text-sm">
                         <ArrowOutwardIcon /> View Top Artists
                     </Link>
-                    <Link href="/tracks">
+                    <Link href="/tracks" className="md:text-md text-sm">
                         <ArrowOutwardIcon /> View Top Tracks
                     </Link>
                 </div>

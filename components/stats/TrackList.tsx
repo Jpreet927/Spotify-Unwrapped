@@ -19,31 +19,34 @@ const TrackList = ({ topTracks, setTimeframe }: props) => {
                     <TabsTrigger
                         value="month"
                         onClick={() => setTimeframe(TopItemsTimeframe.SHORT)}
+                        className="sm:text-sm text-xs"
                     >
                         Last Month
                     </TabsTrigger>
                     <TabsTrigger
                         value="sixmonths"
                         onClick={() => setTimeframe(TopItemsTimeframe.MEDIUM)}
+                        className="sm:text-sm text-xs"
                     >
                         Last 6 Months
                     </TabsTrigger>
                     <TabsTrigger
                         value="alltime"
                         onClick={() => setTimeframe(TopItemsTimeframe.LONG)}
+                        className="sm:text-sm text-xs"
                     >
                         All Time
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
-            <div className="flex justify-between w-[50%]">
+            <div className="flex justify-center sm:flex-nowrap flex-wrap gap-4 xl:w-[50%] lg:w-[90%] w-[90%]">
                 {topTracks
                     ?.slice(0, LIST_OFFSET)
                     .map((track: TopTrack, index: number) => (
                         <TopFiveTrack track={track} rank={index + 1} />
                     ))}
             </div>
-            <div className="w-[50%] mb-24">
+            <div className="xl:w-[50%] lg:w-[70%] w-[90%] mb-24">
                 {topTracks
                     ?.slice(LIST_OFFSET)
                     .map((track: TopTrack, index: number) => (

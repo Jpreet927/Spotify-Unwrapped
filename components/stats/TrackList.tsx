@@ -1,8 +1,11 @@
+"use client";
+
 import { TopItemsTimeframe } from "@/ts/enums/TopItemsTimeframe";
 import { TopTrack } from "@/ts/types/TopTrack";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TopFiveTrack from "./TopFiveTrack";
 import TrackRow from "./TrackRow";
+import { useEffect, useState } from "react";
 
 type props = {
     topTracks: TopTrack[] | undefined;
@@ -11,6 +14,19 @@ type props = {
 
 const TrackList = ({ topTracks, setTimeframe }: props) => {
     const LIST_OFFSET = 5; // top 5 listed as boxes, remaining 15 as list
+    const [audio, setAudio] = useState<HTMLAudioElement>();
+
+    useEffect(() => {
+        setAudio(new Audio()); // only call client
+    }, []);
+
+    const startPreviewAudio = () => {
+        audio!.play();
+    };
+
+    const stopPreviewAudio = () => {
+        audio!.pause();
+    };
 
     return (
         <div className="w-full flex flex-col items-center gap-16">
@@ -43,7 +59,13 @@ const TrackList = ({ topTracks, setTimeframe }: props) => {
                 {topTracks
                     ?.slice(0, LIST_OFFSET)
                     .map((track: TopTrack, index: number) => (
-                        <TopFiveTrack track={track} rank={index + 1} />
+                        <TopFiveTrack
+                            track={track}
+                            rank={index + 1}
+                            startPreviewAudio={startPreviewAudio}
+                            stopPreviewAudio={stopPreviewAudio}
+                            audio={audio}
+                        />
                     ))}
             </div>
             <div className="xl:w-[50%] lg:w-[70%] w-[90%] mb-24">
@@ -53,6 +75,9 @@ const TrackList = ({ topTracks, setTimeframe }: props) => {
                         <TrackRow
                             key={track.id}
                             track={track}
+                            startPreviewAudio={startPreviewAudio}
+                            stopPreviewAudio={stopPreviewAudio}
+                            audio={audio}
                             rank={index + LIST_OFFSET + 1}
                         />
                     ))}

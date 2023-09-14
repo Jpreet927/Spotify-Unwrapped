@@ -1,15 +1,53 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { millisecondsToMinutesAndSeconds } from "@/lib/helpers";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import Link from "next/link";
 import { Artist, TopTrack } from "@/ts/types/TopTrack";
 import { Badge } from "@/components/ui/badge";
 
-const TrackRow = ({ track, rank }: { track: TopTrack; rank: number }) => {
+type props = {
+    track: TopTrack;
+    rank: number;
+    audio: HTMLAudioElement | undefined;
+    startPreviewAudio: () => void;
+    stopPreviewAudio: () => void;
+};
+
+const TrackRow = ({
+    track,
+    rank,
+    audio,
+    startPreviewAudio,
+    stopPreviewAudio,
+}: props) => {
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+    const handleAudio = () => {
+        audio!.src = track.preview_url;
+
+        if (isPlaying) {
+            setIsPlaying(false);
+            stopPreviewAudio();
+        } else {
+            setIsPlaying(true);
+            startPreviewAudio();
+        }
+    };
+
     return (
         <div className="bg-white/0 hover:bg-white/5 transition-colors">
             <div className="flex w-full items-center gap-4 sm:text-sm text-xs py-4 px-4">
-                <div className="w-10 h-10 overflow-hidden">
+                <div className="w-10 h-10 overflow-hidden relative">
+                    <div
+                        className="w-full h-full absolute top-0 left-0 opacity-0 hover:opacity-100 bg-black/50 flex items-center justify-center cursor-pointer transition-opacity duration-300"
+                        onClick={() => handleAudio()}
+                    >
+                        {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+                    </div>
                     <img
                         src={track.album.images[0].url}
                         alt={`${track.name} album cover.`}

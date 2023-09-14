@@ -16,7 +16,6 @@ export default function Home() {
     const { data: session, status }: any = useSession();
     const router = useRouter();
     const TYPE = "artists";
-    const URL = `https://api.spotify.com/v1/me/top/${TYPE}`;
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -24,6 +23,10 @@ export default function Home() {
         }
         console.log(session, status);
     }, [status]);
+
+    if (status === "loading") {
+        return <p>Loading...</p>;
+    }
 
     return (
         <main className="bg-home bg-cover bg-center h-screen w-screen items-center flex flex-col">
@@ -37,10 +40,16 @@ export default function Home() {
                     having to wait for the end of the year.
                 </p>
                 <div className="flex sm:gap-16 gap-4 mt-8">
-                    <Link href="/artists" className="md:text-md text-sm">
+                    <Link
+                        href="/artists"
+                        className="md:text-md text-sm after:bg-white relative after:absolute after:h-[1px] after:w-0 after:-bottom-2 after:left-0 hover:after:w-full after:transition-all after:duration-500"
+                    >
                         <ArrowOutwardIcon /> View Top Artists
                     </Link>
-                    <Link href="/tracks" className="md:text-md text-sm">
+                    <Link
+                        href="/tracks"
+                        className="md:text-md text-sm after:bg-white relative after:absolute after:h-[1px] after:w-0 after:-bottom-2 after:left-0 hover:after:w-full after:transition-all after:duration-500"
+                    >
                         <ArrowOutwardIcon /> View Top Tracks
                     </Link>
                 </div>

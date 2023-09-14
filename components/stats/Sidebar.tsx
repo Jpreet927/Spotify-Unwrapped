@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -9,6 +10,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import AlbumOutlinedIcon from "@mui/icons-material/AlbumOutlined";
 
 const Sidebar = () => {
+    const path: String = usePathname();
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
     return (
@@ -23,7 +25,7 @@ const Sidebar = () => {
                 SPOTIFY UNWRAPPED
             </h3>
             <div
-                className={`flex flex-col lg:gap-4 gap-12 text-text-secondary lg:items-start ${
+                className={`flex flex-col lg:gap-4 gap-12 lg:items-start ${
                     sidebarOpen ? "items-start" : "items-center"
                 }`}
             >
@@ -35,7 +37,11 @@ const Sidebar = () => {
                 </button>
                 <Link
                     href="/"
-                    className="hover:text-text-primary transition-all flex gap-4 items-center"
+                    className={`hover:text-text-primary transition-all flex gap-4 items-center ${
+                        path === "/"
+                            ? "text-text-primary"
+                            : "text-text-secondary"
+                    }`}
                 >
                     <HomeOutlinedIcon />
                     <p
@@ -53,7 +59,11 @@ const Sidebar = () => {
                 ></div>
                 <Link
                     href="/artists"
-                    className="hover:text-text-primary transition-all flex gap-4 items-center"
+                    className={`hover:text-text-primary transition-all flex gap-4 items-center ${
+                        path === "/artists"
+                            ? "text-text-primary"
+                            : "text-text-secondary"
+                    }`}
                 >
                     <PersonOutlineOutlinedIcon />
                     <p
@@ -71,7 +81,11 @@ const Sidebar = () => {
                 ></div>
                 <Link
                     href="/tracks"
-                    className="hover:text-text-primary transition-all flex gap-4 items-center"
+                    className={`hover:text-text-primary transition-all flex gap-4 items-center ${
+                        path === "/tracks"
+                            ? "text-text-primary"
+                            : "text-text-secondary"
+                    }`}
                 >
                     <AlbumOutlinedIcon />
                     <p

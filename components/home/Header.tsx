@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import spotifyLogo from "@/assets/spotify logo.png";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
     DropdownMenu,
@@ -33,8 +35,14 @@ const Header = () => {
                 <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
+                    <DropdownMenuItem className="flex gap-1 items-center">
+                        <PersonOutlineOutlinedIcon className="h-[18px]" />
+                        Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex gap-1 items-center">
+                        <LogoutIcon className="h-[18px]" />
+                        Logout
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>

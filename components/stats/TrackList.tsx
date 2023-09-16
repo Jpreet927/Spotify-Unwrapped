@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { TopItemsTimeframe } from "@/ts/enums/TopItemsTimeframe";
 import { TopTrack } from "@/ts/types/TopTrack";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
 import TopFiveTrack from "./TopFiveTrack";
 import TrackRow from "./TrackRow";
-import { useEffect, useState } from "react";
+import { topFiveContainer, topFiveItem } from "@/lib/framer";
 
 type props = {
     topTracks: TopTrack[] | undefined;
@@ -29,7 +31,7 @@ const TrackList = ({ topTracks, setTimeframe }: props) => {
     };
 
     return (
-        <div className="w-full flex flex-col items-center gap-16">
+        <div className="w-full flex flex-col items-center gap-16 mt-20">
             <Tabs defaultValue="month" className="">
                 <TabsList>
                     <TabsTrigger
@@ -55,19 +57,34 @@ const TrackList = ({ topTracks, setTimeframe }: props) => {
                     </TabsTrigger>
                 </TabsList>
             </Tabs>
-            <div className="flex justify-center sm:flex-nowrap flex-wrap gap-4 xl:w-[50%] lg:w-[90%] w-[90%]">
-                {topTracks
-                    ?.slice(0, LIST_OFFSET)
-                    .map((track: TopTrack, index: number) => (
-                        <TopFiveTrack
-                            track={track}
-                            rank={index + 1}
-                            startPreviewAudio={startPreviewAudio}
-                            stopPreviewAudio={stopPreviewAudio}
-                            audio={audio}
-                        />
-                    ))}
-            </div>
+            {topTracks && (
+                <motion.div
+                    className="flex justify-center sm:flex-nowrap flex-wrap gap-4 xl:w-[50%] lg:w-[90%] w-[90%]"
+                    variants={topFiveContainer}
+                    initial="initial"
+                    animate="animate"
+                >
+                    {topTracks
+                        ?.slice(0, LIST_OFFSET)
+                        .map((track: TopTrack, index: number) => (
+                            <motion.div
+                                variants={topFiveItem}
+                                key={track.uri}
+                                initial="initial"
+                                animate="animate"
+                            >
+                                <TopFiveTrack
+                                    key={index}
+                                    track={track}
+                                    rank={index + 1}
+                                    startPreviewAudio={startPreviewAudio}
+                                    stopPreviewAudio={stopPreviewAudio}
+                                    audio={audio}
+                                />
+                            </motion.div>
+                        ))}
+                </motion.div>
+            )}
             <div className="xl:w-[50%] lg:w-[70%] w-[90%] mb-24">
                 {topTracks
                     ?.slice(LIST_OFFSET)

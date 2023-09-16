@@ -1,12 +1,20 @@
 import React from "react";
+import Link from "next/link";
 import { convertLowerCaseToPascalCase } from "@/lib/helpers";
 import { TopArtist } from "@/ts/types/TopArtist";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import Link from "next/link";
+import { motion } from "framer-motion";
+import { row } from "@/lib/framer";
 
 const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
     return (
-        <div className="bg-white/0 hover:bg-white/5 transition-colors w-full">
+        <motion.div
+            className="bg-white/0 hover:bg-white/5 transition-colors w-full"
+            variants={row}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+        >
             <div className="flex w-full items-center gap-4 py-4 px-4 sm:text-sm text-xs">
                 <div className="w-10 h-10 overflow-hidden">
                     <img
@@ -56,7 +64,7 @@ const ArtistRow = ({ artist, rank }: { artist: TopArtist; rank: number }) => {
                 </div>
             </div>
             <div className="w-full h-[1px] bg-white/20"></div>
-        </div>
+        </motion.div>
     );
 };
 

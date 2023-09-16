@@ -8,6 +8,8 @@ import PauseIcon from "@mui/icons-material/Pause";
 import Link from "next/link";
 import { Artist, TopTrack } from "@/ts/types/TopTrack";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { row } from "@/lib/framer";
 
 type props = {
     track: TopTrack;
@@ -39,7 +41,13 @@ const TrackRow = ({
     };
 
     return (
-        <div className="bg-white/0 hover:bg-white/5 transition-colors">
+        <motion.div
+            className="bg-white/0 hover:bg-white/5 transition-colors"
+            variants={row}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+        >
             <div className="flex w-full items-center gap-4 sm:text-sm text-xs py-4 px-4">
                 <div className="w-10 h-10 overflow-hidden relative">
                     <div
@@ -97,7 +105,7 @@ const TrackRow = ({
                 </div>
             </div>
             <div className="w-full h-[1px] bg-white/20"></div>
-        </div>
+        </motion.div>
     );
 };
 

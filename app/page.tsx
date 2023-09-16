@@ -16,7 +16,6 @@ export default function Home() {
         if (status === "unauthenticated") {
             router.push("/login");
         }
-        console.log(session, status);
     }, [status]);
 
     if (status === "loading") {

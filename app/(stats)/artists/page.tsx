@@ -38,7 +38,7 @@ const TopArtistsPage = () => {
                     ?.slice(0, LIST_OFFSET)
                     .map((artist) => artist.images)}
             />
-            <h1 className="lg:text-8xl sm:text-7xl text-6xl font-bold lg:ml-[15%] ml-0 -translate-y-16 lg:text-left text-center">
+            <h1 className="lg:text-8xl sm:text-7xl text-6xl font-bold lg:ml-[15%] ml-0 -translate-y-16 lg:text-left text-center z-20 absolute ">
                 Your Top Artists
             </h1>
             <ArtistList topArtists={topArtists} setTimeframe={setTimeframe} />

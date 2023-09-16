@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import spotifyLogo from "@/assets/spotify logo.png";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -39,7 +39,14 @@ const Header = () => {
                         <PersonOutlineOutlinedIcon className="h-[18px]" />
                         Profile
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="flex gap-1 items-center">
+                    <DropdownMenuItem
+                        className="flex gap-1 items-center"
+                        onClick={() =>
+                            signOut({
+                                callbackUrl: "/login",
+                            })
+                        }
+                    >
                         <LogoutIcon className="h-[18px]" />
                         Logout
                     </DropdownMenuItem>

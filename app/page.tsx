@@ -4,18 +4,13 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
 import Header from "@/components/home/Header";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-
-type SpotifySession = Session & {
-    accessToken: string;
-};
+import Loading from "@/components/Loading";
 
 export default function Home() {
     const { data: session, status }: any = useSession();
     const router = useRouter();
-    const TYPE = "artists";
 
     useEffect(() => {
         if (status === "unauthenticated") {
@@ -25,7 +20,7 @@ export default function Home() {
     }, [status]);
 
     if (status === "loading") {
-        return <p>Loading...</p>;
+        return <Loading />;
     }
 
     return (

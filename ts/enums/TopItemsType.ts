@@ -1,4 +1,4 @@
 export enum TopItems {
-    ARTISTS = "artists",
-    TRACKS = "tracks",
+	ARTISTS = "artists",
+	TRACKS = "tracks",
 }

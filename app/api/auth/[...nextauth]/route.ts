@@ -21,7 +21,7 @@ const LOGIN_URL =
     "https://accounts.spotify.com/authorize?" +
     new URLSearchParams(params).toString();
 
-export const authOptions = {
+const authOptions = {
     providers: [
         SpotifyProvider({
             clientId: process.env.SPOTIFY_CLIENT_ID as string,

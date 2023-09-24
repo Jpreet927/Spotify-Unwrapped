@@ -17,7 +17,7 @@ const Sidebar = () => {
         <div
             className={`flex flex-col gap-8 lg:py-12 py-4 lg:px-8 lg:w-[18%] bg-black ${
                 sidebarOpen
-                    ? "w-screen absolute top-0 left-0 z-20 px-8"
+                    ? "w-screen absolute top-0 left-0 z-30 px-8"
                     : "w-[50px] sticky top-0 px-2"
             } h-screen border-r border-r-white/10 transition-all`}
         >

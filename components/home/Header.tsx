@@ -18,7 +18,7 @@ const Header = () => {
     const { data: session }: any = useSession();
 
     return (
-        <div className="w-full flex justify-between py-12 md:px-24 px-8 absolute top-0 left-0 z-10">
+        <div className="w-full flex justify-between py-12 md:px-24 px-8 absolute top-0 left-0 z-20">
             <Image
                 src={spotifyLogo}
                 alt="Spotify Logo"

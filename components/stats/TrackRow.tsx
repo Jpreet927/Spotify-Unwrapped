@@ -78,13 +78,19 @@ const TrackRow = ({
                         {track.artists.map((artist: Artist, index: number) => {
                             if (index === track.artists.length - 1) {
                                 return (
-                                    <span className="text-text-secondary">
+                                    <span
+                                        key={index}
+                                        className="text-text-secondary"
+                                    >
                                         {artist.name}
                                     </span>
                                 );
                             } else {
                                 return (
-                                    <span className="text-text-secondary">
+                                    <span
+                                        key={index}
+                                        className="text-text-secondary"
+                                    >
                                         {artist.name + ", "}
                                     </span>
                                 );
